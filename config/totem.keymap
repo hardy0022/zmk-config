@@ -1,22 +1,9 @@
-//
-//                                                        ▀▀▀▀▀     ▀▀▀▀▀          ▀▀█▀▀
-//                                                        ▄▀▀▀▄  ▄  ▄▀▀▀▄  ▄  ▄▀▀▀▄  █  ▄▀▀▀▄
-//                                                        █   █  █  █   █  █  █   █  █  █   █
-//                                                         ▀▀▀   █   ▀▀▀   █   ▀▀▀   ▀   ▀▀▀
-//                                                               █      ▄▄▄█▄▄▄    █   █  
-//                                                               ▀      █  █  █     █▄█
-//                                                             ▀▀▀▀▀    █  █  █      ▀
-//                                                                      ▀  ▀  ▀
-//
-// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
 #define BASE 0
 #define NAV  1
 #define SYM  2
-#define ADJ  3
 
 &mt {
     quick-tap-ms = <100>;
@@ -32,14 +19,14 @@
         combo_esc {
             timeout-ms = <50>;
             key-positions = <0 1>;
-            bindings = <&hm ESC GRAVE>;
+            bindings = <&kp ESC>; // 정상적인 단일 키 입력으로 수정
         };
     };
 
     behaviors {
-        hm: hm {
+        hm: home_row_mods {
             compatible = "zmk,behavior-hold-tap";
-            label = "HM";
+            label = "HOME_ROW_MODS";
             bindings = <&kp>, <&kp>;
 
             #binding-cells = <2>;
@@ -53,51 +40,33 @@
     keymap {
         compatible = "zmk,keymap";
 
-        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
         base_layer {
-            // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-
             label = "BASE";
-
-            // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-            //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-            //             ┃     Q     ┃     W     ┃     F     ┃     P     ┃     G     ┃   ┃     J     ┃     L     ┃     U     ┃     Y     ┃     ;     ┃
-            //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-            //             ┃     A     ┃     R     ┃     S     ┃     T     ┃     D     ┃   ┃     H     ┃     N     ┃     E     ┃     I     ┃     O     ┃
-            // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-            // ┃           ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     K     ┃     M     ┃     ,     ┃     .     ┃     /     ┃           ┃
-            // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-            //                                     ┃           ┃    TAB    ┃    SPC    ┃   ┃   ENTER   ┃   BSPC    ┃           ┃
-            //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-
             bindings = <
-         &kp Q        &kp W           &kp E           &kp R             &kp T          &kp Y      &kp U              &kp I            &kp O           &kp P
-         &hm LCTRL A  &hm LEFT_GUI S  &hm LEFT_ALT D  &hm LEFT_SHIFT F  &kp G          &kp H      &hm RIGHT_SHIFT J  &hm RIGHT_ALT K  &hm LEFT_GUI L  &hm LCTRL L
-&kp TAB  &kp Z        &kp X           &kp C           &kp V             &kp B          &kp N      &kp M              &kp COMMA        &kp DOT         &kp FSLH     &kp FSLH
-                                      &kp DELETE      &kp SPACE         &lt 1 SPACE    &lt 0 RET  &kp ENTER          &kp BSPC
+          &kp Q        &kp W        &kp E        &kp R        &kp T         &kp Y      &kp U        &kp I        &kp O        &kp P
+          &hm LCTRL A  &hm LGUI S   &hm LALT D   &hm LSHFT F  &kp G         &kp H      &hm RSHFT J  &hm RALT K   &hm RGUI L   &hm RCTRL SEMI
+&kp TAB   &kp Z        &kp X        &kp C        &kp V        &kp B         &kp N      &kp M        &kp COMMA    &kp DOT      &kp FSLH        &kp BSPC
+                                    &kp DELETE   &kp SPACE    &lt 1 SPACE   &lt 2 RET  &kp ENTER    &kp BSPC
             >;
         };
 
-        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
         number_layer {
+            label = "NUM";
             bindings = <
-         &kp NUMBER_1  &kp N2  &kp N3  &kp N4  &kp N5      &kp N6    &kp N7  &kp N8     &kp N9     &kp N0
-         &kp TAB       &trans  &trans  &trans  &kp LBKT    &kp RBKT  &trans  &kp MINUS  &kp EQUAL  &kp SEMI
-&kp TAB  &trans        &trans  &trans  &trans  &trans      &trans    &trans  &trans     &trans     &kp BSLH  &trans
-                               &trans  &trans  &trans      &trans    &trans  &trans
+          &kp N1   &kp N2   &kp N3   &kp N4   &kp N5     &kp N6    &kp N7   &kp N8     &kp N9     &kp N0
+          &kp TAB  &trans   &trans   &trans   &kp LBKT   &kp RBKT  &trans   &kp MINUS  &kp EQUAL  &kp SEMI
+&kp TAB   &trans   &trans   &trans   &trans   &trans     &trans    &trans   &trans     &trans     &kp BSLH  &trans
+                            &trans   &trans   &trans     &trans    &trans   &trans
             >;
         };
 
         layer_2 {
+            label = "NAV";
             bindings = <
-         &kp F1   &kp F2    &kp F3    &kp F4     &kp F5    &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
-         &kp TAB  &kp LEFT  &kp UP    &kp RIGHT  &kp F6    &kp F7  &trans  &trans   &trans   &trans
-&kp TAB  &trans   &trans    &kp DOWN  &trans     &trans    &trans  &trans  &trans   &trans   &trans   &trans
-                            &trans    &trans     &trans    &trans  &trans  &trans
+          &kp F1   &kp F2    &kp F3    &kp F4     &kp F5    &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
+          &kp TAB  &kp LEFT  &kp UP    &kp RIGHT  &kp F6    &kp F7  &trans  &trans   &trans   &trans
+&kp TAB   &trans   &trans    &kp DOWN  &trans     &trans    &trans  &trans  &trans   &trans   &trans   &trans
+                             &trans    &trans     &trans    &trans  &trans  &trans
             >;
         };
     };
